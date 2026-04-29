@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>美食推荐 - 秦皇岛旅游官网</title>
+  <meta name="description" content="秦皇岛美食推荐：海鲜大餐、北戴河生蚝、青龙板栗、抚宁白梨、四条包子、杨肠子、海鲜烧烤等本地真实风味。" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ocean: '#0B5ED7',
+            sea: '#1E88E5',
+            sand: '#F4E3B2',
+            mint: '#34C38F',
+            dark: '#0F172A'
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(15, 23, 42, 0.10)',
+            card: '0 12px 35px rgba(11, 94, 215, 0.10)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: linear-gradient(to bottom, #f8fbff, #fffdf8);
+      color: #1e293b;
+    }
+    .glass {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .card-hover {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(2, 132, 199, 0.15);
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all .8s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #34C38F;
+      transition: width .3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .rating {
+      color: #f59e0b;
+    }
+    .lazy-image {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .lazy-image.loaded {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen">
+  <!-- 导航栏 -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 glass backdrop-blur-lg shadow-sm">
+    <div class="container mx-auto px-4 py-3">
+      <nav class="flex flex-wrap items-center justify-between">
+        <a href="index.html" class="text-2xl font-bold text-ocean flex items-center">
+          <i class="fas fa-mountain-sea mr-2"></i>
+          <span>秦皇岛旅游</span>
+        </a>
+        
+        <button id="menuToggle" class="md:hidden text-dark focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+        
+        <div id="navMenu" class="hidden md:flex flex-col md:flex-row w-full md:w-auto">
+          <a href="index.html" class="nav-link block py-2 px-4 text-dark hover:text-ocean">首页</a>
+          <a href="scenic.html" class="nav-link block py-2 px-4 text-dark hover:text-ocean">景点大全</a>
+          <a href="food.html" class="nav-link block py-2 px-4 text-ocean font-medium border-b-2 border-ocean">美食推荐</a>
+          <a href="hotel.html" class="nav-link block py-2 px-4 text-dark hover:text-ocean">住宿攻略</a>
+          <a href="travel.html" class="nav-link block py-2 px-4 text-dark hover:text-ocean">游玩路线</a>
+          <a href="about.html" class="nav-link block py-2 px-4 text-dark hover:text-ocean">城市介绍</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主要内容区域 -->
+  <main class="pt-20 pb-16 container mx-auto px-4">
+    <!-- 页面标题 -->
+    <section class="text-center mb-16 fade-up">
+      <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">秦皇岛美食推荐</h1>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        品味山海之间的独特风味，体验秦皇岛地道美食文化
+      </p>
+    </section>
+
+    <!-- 特色美食分类 -->
+    <section class="mb-16 fade-up">
+      <h2 class="text-3xl font-bold text-dark mb-8 text-center">本地特色美食</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- 海鲜大餐 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80" 
+               alt="海鲜大餐" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">海鲜大餐</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.9</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">新鲜捕捞的渤海海鲜，包括螃蟹、虾、扇贝、海螺等多种海产，烹饪手法多样，原汁原味。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥120-200</span>
+              <span class="text-sm text-gray-500">推荐餐厅：北戴河海鲜一条街</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 北戴河生蚝 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1605276374104-dee0ca1e0e0c?auto=format&fit=crop&w=600&q=80" 
+               alt="北戴河生蚝" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">北戴河生蚝</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.8</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">肉质饱满，味道鲜美，有烤生蚝、炸生蚝、蒸生蚝等多种做法，是北戴河的招牌美食之一。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥60-100</span>
+              <span class="text-sm text-gray-500">推荐餐厅：北戴河夜市</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 四条包子 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1592861956120-e524fc739aa8?auto=format&fit=crop&w=600&q=80" 
+               alt="四条包子" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">四条包子</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.7</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">秦皇岛传统名吃，皮薄馅大，汤汁丰富，有猪肉韭菜、三鲜、牛肉等多种口味，是当地人早餐首选。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥15-30</span>
+              <span class="text-sm text-gray-500">推荐餐厅：四条包子总店</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 杨肠子 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" 
+               alt="杨肠子" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">杨肠子</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.6</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">抚宁特产，香肠制作工艺独特，口感鲜美，肉质紧实，是秦皇岛地区历史悠久的传统食品。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥25-50</span>
+              <span class="text-sm text-gray-500">推荐购买：抚宁县特产店</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 青龙板栗 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1614846754740-0e4f4adb15ec?auto=format&fit=crop&w=600&q=80" 
+               alt="青龙板栗" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">青龙板栗</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.5</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">青龙满族自治县特产，个大饱满，甜糯可口，可糖炒、煮粥、做糕点，营养丰富，是秋季必尝美味。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥20-40</span>
+              <span class="text-sm text-gray-500">推荐购买：青龙县板栗市场</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 抚宁白梨 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1618172193633-73a68cbad47f?auto=format&fit=crop&w=600&q=80" 
+               alt="抚宁白梨" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">抚宁白梨</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.4</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">抚宁特产水果，果肉洁白细嫩，汁多味甜，具有润肺止咳的功效，是秋季采摘的理想选择。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥15-35</span>
+              <span class="text-sm text-gray-500">推荐季节：8-10月</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 海鲜烧烤 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" 
+               alt="海鲜烧烤" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">海鲜烧烤</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.7</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">夏夜必备美食，新鲜海产现烤现吃，搭配啤酒，感受海滨城市的夜生活氛围。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥50-100</span>
+              <span class="text-sm text-gray-500">推荐地点：金梦海湾夜市</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 石门寨豆腐宴 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1565911746558-3a2f27bd9e83?auto=format&fit=crop&w=600&q=80" 
+               alt="石门寨豆腐宴" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">石门寨豆腐宴</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.6</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">采用当地优质大豆和山泉水制作的豆腐，搭配多种烹饪方式，清淡健康，营养丰富。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥80-150</span>
+              <span class="text-sm text-gray-500">推荐餐厅：石门寨农家乐</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 山海关浑锅 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-card glass card-hover">
+          <img data-src="https://images.unsplash.com/photo-1603105037880-8802c0a9b3c3?auto=format&fit=crop&w=600&q=80" 
+               alt="山海关浑锅" class="w-full h-56 object-cover lazy-image">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-dark">山海关浑锅</h3>
+              <div class="flex items-center">
+                <span class="rating mr-1"><i class="fas fa-star"></i></span>
+                <span class="font-semibold">4.8</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">山海关特色火锅，以白肉为主料，加入酸菜、血肠等，口味独特，是冬季暖身佳品。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-ocean font-semibold">人均 ¥60-120</span>
+              <span class="text-sm text-gray-500">推荐餐厅：山海关古城内</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食地图 -->
+    <section class="mb-16 fade-up">
+      <h2 class="text-3xl font-bold text-dark mb-8 text-center">美食地图</h2>
+      <div class="bg-white rounded-xl p-6 shadow-card glass">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-bold text-dark mb-4">主要美食街区</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <i class="fas fa-map-marker-alt text-ocean mr-3"></i>
+                <span><strong>北戴河海鲜一条街</strong> - 新鲜海产，价格实惠</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-map-marker-alt text-ocean mr-3"></i>
+                <span><strong>秦皇小巷美食街</strong> - 传统小吃，地方特色</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-map-marker-alt text-ocean mr-3"></i>
+                <span><strong>茂业天地美食广场</strong> - 现代餐饮，环境舒适</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-map-marker-alt text-ocean mr-3"></i>
+                <span><strong>金梦海湾夜市</strong> - 烧烤摊位，夜宵天堂</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-dark mb-4">美食时节推荐</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <i class="fas fa-calendar-day text-mint mr-3"></i>
+                <span><strong>春季</strong> - 海鲜肥美期，品尝各种贝类</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-calendar-day text-mint mr-3"></i>
+                <span><strong>夏季</strong> - 海鲜烧烤，搭配啤酒畅饮</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-calendar-day text-mint mr-3"></i>
+                <span><strong>秋季</strong> - 青龙板栗、抚宁白梨上市</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-calendar-day text-mint mr-3"></i>
+                <span><strong>冬季</strong> - 浑锅暖身，温补养生</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食文化 -->
+    <section class="fade-up">
+      <h2 class="text-3xl font-bold text-dark mb-8 text-center">美食文化</h2>
+      <div class="bg-white rounded-xl p-8 shadow-card glass">
+        <p class="text-lg text-gray-700 leading-relaxed">
+          秦皇岛地处渤海之滨，依山傍海的地理优势孕育了独特的饮食文化。这里的美食融合了沿海地区的海鲜文化与北方内陆的饮食传统，
+          形成了以海鲜为主、兼收并蓄的独特风味。从新鲜的渤海海鲜到传统的北方面食，从街头小吃到精致宴席，
+          每一道菜都承载着这座城市的海洋文化和历史底蕴。来到秦皇岛，不仅要欣赏美丽的山海风光，
+          更要品尝地道的美食，让味蕾感受这座城市独特的魅力。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-12 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fas fa-mountain-sea mr-2"></i>
+            秦皇岛旅游
+          </h3>
+          <p class="text-gray-300">探索山海之间的美丽风景，体验历史文化与现代生活的完美融合。</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition">首页</a></li>
+            <li><a href="scenic.html" class="text-gray-300 hover:text-white transition">景点大全</a></li>
+            <li><a href="food.html" class="text-ocean font-medium">美食推荐</a></li>
+            <li><a href="hotel.html" class="text-gray-300 hover:text-white transition">住宿攻略</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">旅游服务</h4>
+          <ul class="space-y-2">
+            <li><a href="travel.html" class="text-gray-300 hover:text-white transition">游玩路线</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-white transition">城市介绍</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition">旅游贴士</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition">交通指南</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+          <ul class="space-y-2 text-gray-300">
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-3"></i>
+              400-123-4567
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3"></i>
+              info@qhd-tourism.com
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-map-marker-alt mr-3"></i>
+              河北省秦皇岛市海港区
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 秦皇岛旅游官方网站. 保留所有权利 | 备案号：冀ICP备12345678号</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 平滑滚动效果
+    document.addEventListener('DOMContentLoaded', function() {
+      // 滚动动画
+      const fadeUpElements = document.querySelectorAll('.fade-up');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeUpElements.forEach(element => {
+        observer.observe(element);
+      });
+      
+      // 图片懒加载
+      const images = document.querySelectorAll('.lazy-image');
+      
+      const imgObserver = new IntersectionObserver((entries, imgObserver) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+            imgObserver.unobserve(img);
+          }
+        });
+      });
+      
+      images.forEach(image => {
+        imgObserver.observe(image);
+      });
+      
+      // 移动端菜单切换
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+      
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+      });
+      
+      // 窗口大小改变时重置移动端菜单状态
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          navMenu.classList.remove('hidden');
+        } else {
+          navMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

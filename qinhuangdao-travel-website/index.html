@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>秦皇岛旅游官网 - 山海海滨 长城胜境</title>
+  <meta name="description" content="秦皇岛旅游官方网站，涵盖北戴河、山海关、阿那亚、黄金海岸、住宿、美食、路线攻略等核心旅游信息。" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ocean: '#0B5ED7',
+            sea: '#1E88E5',
+            sand: '#F4E3B2',
+            mint: '#34C38F',
+            dark: '#0F172A'
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(15, 23, 42, 0.10)',
+            card: '0 12px 35px rgba(11, 94, 215, 0.10)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: linear-gradient(to bottom, #f8fbff, #fffdf8);
+      color: #1e293b;
+    }
+    .glass {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay {
+      background: linear-gradient(120deg, rgba(15,23,42,.72), rgba(11,94,215,.35), rgba(52,195,143,.20));
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all .8s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card-hover {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(2, 132, 199, 0.15);
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #34C38F;
+      transition: width .3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <!-- 导航栏 -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass shadow-soft border-b border-white/40">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-ocean to-mint text-white flex items-center justify-center shadow-lg">
+            <i class="fa-solid fa-umbrella-beach"></i>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold text-slate-800">秦皇岛旅游官网</h1>
+            <p class="text-xs text-slate-500">Qinhuangdao Travel</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+          <a class="nav-link active" href="index.html">首页</a>
+          <a class="nav-link" href="scenic.html">景点大全</a>
+          <a class="nav-link" href="food.html">美食推荐</a>
+          <a class="nav-link" href="hotel.html">住宿攻略</a>
+          <a class="nav-link" href="travel.html">游玩路线</a>
+          <a class="nav-link" href="about.html">城市介绍</a>
+        </nav>
+
+        <button id="menuBtn" class="md:hidden text-slate-700 text-xl">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col gap-3 text-sm font-medium text-slate-700">
+          <a href="index.html" class="py-2">首页</a>
+          <a href="scenic.html" class="py-2">景点大全</a>
+          <a href="food.html" class="py-2">美食推荐</a>
+          <a href="hotel.html" class="py-2">住宿攻略</a>
+          <a href="travel.html" class="py-2">游玩路线</a>
+          <a href="about.html" class="py-2">城市介绍</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 首屏轮播 -->
+  <section class="relative h-screen min-h-[680px] overflow-hidden">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');"></div>
+
+    <div class="absolute inset-0 hero-overlay"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center">
+      <div class="max-w-3xl text-white mt-16">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm mb-6">
+          <i class="fa-solid fa-location-dot text-sand"></i>
+          河北 · 秦皇岛 | 北方滨海度假名城
+        </span>
+        <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+          山海相依，长城入海<br />
+          邂逅最美秦皇岛
+        </h2>
+        <p class="text-base md:text-lg text-slate-100/90 leading-8 mb-8">
+          探访山海关、老龙头、北戴河、阿那亚、黄金海岸等代表性目的地，
+          一站获取景点、美食、住宿、线路与出行贴士，开启轻松高品质的滨海旅行。
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="scenic.html" class="px-6 py-3 rounded-full bg-mint text-white font-semibold shadow-lg hover:scale-105 transition">
+            探索景点
+          </a>
+          <a href="travel.html" class="px-6 py-3 rounded-full bg-white/15 border border-white/30 text-white font-semibold hover:bg-white/25 transition">
+            查看路线
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <span class="w-3 h-3 rounded-full bg-white dot opacity-100"></span>
+      <span class="w-3 h-3 rounded-full bg-white/50 dot"></span>
+      <span class="w-3 h-3 rounded-full bg-white/50 dot"></span>
+      <span class="w-3 h-3 rounded-full bg-white/50 dot"></span>
+    </div>
+  </section>
+
+  <!-- 城市简介 -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="fade-up">
+          <p class="text-ocean font-semibold mb-3">城市简介</p>
+          <h3 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">秦皇岛：长城、海滨、度假与人文并存</h3>
+          <p class="text-slate-600 leading-8 mb-5">
+            秦皇岛位于河北省东北部，是中国著名滨海旅游城市，拥有北戴河、南戴河、黄金海岸、山海关等全国知名旅游名片。
+            这里既有“天下第一关”的厚重历史，也有渤海之滨的浪漫海岸，适合家庭度假、亲子出游、情侣旅行和休闲康养。
+          </p>
+          <p class="text-slate-600 leading-8 mb-6">
+            夏季适宜避暑亲海，春秋适合观鸟与城市漫游。景点分布较集中，交通便利，适合安排1至3天深度游。
+          </p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white rounded-2xl p-5 shadow-soft">
+              <h4 class="text-3xl font-extrabold text-ocean">8+</h4>
+              <p class="text-slate-500 mt-2">核心必游景区</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-soft">
+              <h4 class="text-3xl font-extrabold text-mint">1-3天</h4>
+              <p class="text-slate-500 mt-2">推荐游玩时长</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <div class="grid grid-cols-2 gap-4">
+            <img loading="lazy" class="rounded-3xl h-64 w-full object-cover shadow-card card-hover" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="北戴河海滨">
+            <img loading="lazy" class="rounded-3xl h-64 w-full object-cover shadow-card card-hover mt-8" src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="海岸风光">
+            <img loading="lazy" class="rounded-3xl h-64 w-full object-cover shadow-card card-hover -mt-6" src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=900&q=80" alt="海边建筑">
+            <img loading="lazy" class="rounded-3xl h-64 w-full object-cover shadow-card card-hover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="沙滩度假">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 热门景点 -->
+  <section class="py-20 bg-gradient-to-b from-sky-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-14 fade-up">
+        <p class="text-ocean font-semibold mb-3">热门打卡</p>
+        <h3 class="text-3xl md:text-4xl font-bold text-slate-800">秦皇岛热门景点推荐</h3>
+        <p class="text-slate-500 mt-4">精选秦皇岛最具代表性的海滨、人文与休闲景点</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-7">
+        <div class="bg-white rounded-3xl overflow-hidden shadow-card card-hover fade-up">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="北戴河" class="h-56 w-full object-cover">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="text-xl font-bold">北戴河</h4>
+              <span class="text-sm px-3 py-1 rounded-full bg-sky-100 text-ocean">海滨度假</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-7">
+              以海滨避暑、日出观海、鸽子窝公园和老虎石海上公园闻名，是秦皇岛最经典的旅游区域之一。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-card card-hover fade-up">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=900&q=80" alt="山海关" class="h-56 w-full object-cover">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="text-xl font-bold">山海关</h4>
+              <span class="text-sm px-3 py-1 rounded-full bg-amber-100 text-amber-700">历史文化</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-7">
+              长城东部重要关隘，“天下第一关”所在地，可与老龙头联游，感受长城与大海交汇的壮观。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-card card-hover fade-up">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=900&q=80" alt="阿那亚" class="h-56 w-full object-cover">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="text-xl font-bold">阿那亚</h4>
+              <span class="text-sm px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">文艺度假</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-7">
+              以阿那亚礼堂、孤独图书馆、海边社区空间和艺术活动闻名，是年轻游客喜爱的滨海生活方式目的地。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-card card-hover fade-up">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="黄金海岸" class="h-56 w-full object-cover">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="text-xl font-bold">黄金海岸</h4>
+              <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">沙滩休闲</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-7">
+              海岸线绵长，沙质细腻，是看海、亲子玩沙、休闲度假的热门区域，周边度假酒店资源丰富。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10 fade-up">
+        <a href="scenic.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ocean text-white font-semibold shadow-lg hover:scale-105 transition">
+          查看全部景点
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐路线 -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-14 fade-up">
+        <p class="text-mint font-semibold mb-3">高效出行</p>
+        <h3 class="text-3xl md:text-4xl font-bold text-slate-800">秦皇岛推荐路线</h3>
+        <p class="text-slate-500 mt-4">从经典一日游到轻松三日游，满足不同人群需求</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-3xl p-8 shadow-card border border-sky-50 card-hover fade-up">
+          <div class="w-14 h-14 rounded-2xl bg-sky-100 text-ocean flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-route"></i>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">经典1日游</h4>
+          <p class="text-slate-600 leading-8">
+            山海关古城 → 老龙头 → 北戴河老虎石海上公园 → 鸽子窝公园看海上日落
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-card border border-emerald-50 card-hover fade-up">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-mint flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-children"></i>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">亲子2日游</h4>
+          <p class="text-slate-600 leading-8">
+            第1天乐岛海洋王国、浅水湾沙滩；第2天鸽子窝、联峰山、海鲜美食体验
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-card border border-amber-50 card-hover fade-up">
+          <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl mb-5">
+            <i class="fa-solid fa-camera-retro"></i>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">文艺3日游</h4>
+          <p class="text-slate-600 leading-8">
+            北戴河海滨 → 阿那亚礼堂与社区漫步 → 黄金海岸放松度假 → 山海关历史人文收尾
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-10 fade-up">
+        <a href="travel.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-mint text-white font-semibold shadow-lg hover:scale-105 transition">
+          查看详细路线
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white pt-14 pb-8 mt-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-10">
+        <div>
+          <h4 class="text-xl font-bold mb-4">秦皇岛旅游官网</h4>
+          <p class="text-slate-300 leading-7 text-sm">
+            聚合秦皇岛景点、美食、住宿、路线与旅游贴士，帮助游客高效规划高品质滨海旅行。
+          </p>
+        </div>
+        <div>
+          <h5 class="font-semibold mb-4">快速导航</h5>
+          <ul class="space-y-2 text-slate-300 text-sm">
+            <li><a href="index.html" class="hover:text-white">首页</a></li>
+            <li><a href="scenic.html" class="hover:text-white">景点大全</a></li>
+            <li><a href="food.html" class="hover:text-white">美食推荐</a></li>
+            <li><a href="hotel.html" class="hover:text-white">住宿攻略</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-semibold mb-4">出行建议</h5>
+          <ul class="space-y-2 text-slate-300 text-sm">
+            <li>旺季提前预订住宿</li>
+            <li>海边注意防晒防风</li>
+            <li>山海关适合搭配历史线路</li>
+            <li>阿那亚部分区域需关注预约规则</li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-semibold mb-4">联系方式</h5>
+          <ul class="space-y-3 text-slate-300 text-sm">
+            <li><i class="fa-solid fa-phone mr-2 text-mint"></i> 0335-1234567</li>
+            <li><i class="fa-solid fa-envelope mr-2 text-mint"></i> travel@qinhuangdao.com</li>
+            <li><i class="fa-solid fa-location-dot mr-2 text-mint"></i> 河北省秦皇岛市</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-sm text-slate-400">
+        © 2026 秦皇岛旅游官网. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 移动菜单
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 首屏轮播
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        dots[i].classList.toggle('opacity-100', i === index);
+        dots[i].classList.toggle('bg-white', i === index);
+        dots[i].classList.toggle('bg-white/50', i !== index);
+      });
+    }
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 4000);
+
+    // 滚动淡入
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
